@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>OLD-Tool</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	
 </head>
 
 <body>
@@ -37,7 +37,11 @@ if ($action == "suchen") {
 	$geoResult = $geonames->query($searchString);
 
 	echo "<pre>";
-	print_r($geoResult);
+//	print_r($geoResult);
+
+	foreach($geoResult->xpath("//geoname") as $entry) {
+		echo $entry->toponymName." (".$entry->countryCode.")<br>";
+	}
 	echo "</pre>";
 }
 

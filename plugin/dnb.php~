@@ -15,8 +15,7 @@ class DNB {
 		$this->version = "1.1";
 		$this->operation = "searchRetrieve";
 		$this->recordSchema = "RDFxml";
-//		$this->domain = "BBG%3DTp*"; // persons
-		$this->domain = "BBG%3DTg*"; // geography
+		$this->domain = "BBG%3DTp*";
 
 		$this->accessToken;
 
