@@ -9,8 +9,9 @@
 
 <?PHP
 include_once("easyrdf-0.8.0/lib/EasyRdf.php");
-include_once("plugin/dnb.php");
-include_once("plugin/geonames.php");
+include_once("plugin/dnb/dnb.php");
+include_once("plugin/geonames/geonames.php");
+include_once("plugin/mediawiki/mediawiki.php");
 
 if(isset($_GET['searchString'])) $searchString = $_GET['searchString'];
 else $searchString="";
@@ -29,16 +30,20 @@ echo "</form>";
 
 if ($action == "suchen") {
 // retrieve dnb
-	$dnb = new DNB("40e9ad5201493592c1954fce966d32f");
+//	echo "<h2>Gemeinsame Normdatei</h2>";
+//	$dnb = new DNB("40e9ad5201493592c1954fce966d32f");
 //	echo "<pre>".htmlspecialchars($dnb->query($searchString))."</pre>";
 
+// retrieve wikipedia
+	echo "<h2>Wikipedia</h2>";
+	$wiki = new Mediawiki();
+	echo $wiki->query($searchString);
+
 // retrieve geonames
+	echo "<h2>Geonames</h2>";
 	$geonames = new Geonames("adlibtmw");
 	$geoResult = $geonames->query($searchString);
-
-	echo "<pre>";
-	print_r($geoResult);
-	echo "</pre>";
+	echo $geoResult;
 }
 
 ?>

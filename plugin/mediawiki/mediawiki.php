@@ -1,32 +1,24 @@
 <?PHP
-// DNB-Datenservice parser
+// Mediawiki-parser
 
-class Geonames {
+class Mediawiki {
 	var $url;
 	var $user;
 	var $xslPath;
 	var $style;
+	var $param;
 
 	function __construct($user="") {
-		$this->url = "http://api.geonames.org/search";
+		$this->url = "http://de.wikipedia.org/w/api.php";
 		$this->xsl = "";
-
-		$this->user;
-
-		if ($user) {
-			$this->user = $user;
-			return true;
-		}
-		else
-			return false;
+		$this->param = "format=xml&list=exturlusage&action=query&prop=extlinks";
 	}
 
 	function query($searchString) {
-		$this->style = "full";
-		$this->xslPath = "plugin/geonames.xslt";
+		$this->xslPath = "plugin/mediawiki/mediawiki.xslt";
 
-		$path = "{$this->url}?username={$this->user}&q={$searchString}&style={$this->style}";
-//echo $path;
+		$path = "{$this->url}?{$this->param}&titles=$searchString";
+//echo $path."<br>";
 		$xmlString = file_get_contents($path);
 
 		$xsl = new DOMDocument;
