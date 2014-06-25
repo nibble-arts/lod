@@ -8,17 +8,20 @@
 		<div class="links">Wiki Seiten</div>
 		<xsl:apply-templates select="//page"/><br/>
 
-		<div class="summary"><xsl:value-of select="//extract"/></div>
+
+		<xsl:if test="//summary">
+			<div class="summary"><xsl:value-of select="//extract"/></div>
+		</xsl:if>
 
 		<xsl:if test="//el">
 			<div class="links">Externe links</div>
 			<xsl:apply-templates select="//el"/>
 		</xsl:if>
 
-		<xsl:if test="//eu">
+<!--		<xsl:if test="//eu">
 			<div class="links">Verweise auf die Wiki-Seite</div>
 			<xsl:apply-templates select="//eu"/>
-		</xsl:if>
+		</xsl:if>-->
   </xsl:template>
 
 

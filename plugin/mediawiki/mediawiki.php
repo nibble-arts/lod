@@ -8,8 +8,8 @@ class Mediawiki {
 	var $style;
 	var $param;
 
-	function __construct($user="") {
-		$this->url = "http://de.wikipedia.org/w/api.php";
+	function __construct($url="") {
+		$this->url = $url;
 		$this->xsl = "";
 		$this->param = array(
 			"format=xml",
@@ -24,7 +24,7 @@ class Mediawiki {
 	function query($searchString) {
 		$this->xslPath = "plugin/mediawiki/mediawiki.xslt";
 
-		$path = "{$this->url}?".implode($this->param,"&")."&titles=$searchString";
+		$path = "{$this->url}?".implode($this->param,"&")."&titles=".rawurlencode($searchString);
 //echo $path."<br>";
 		$xmlString = file_get_contents($path);
 

@@ -48,7 +48,7 @@ if ($action == "suchen") {
 
 
 // retrieve dnb
-	echo "<div class='title'>GND der Deutschen Nationalbibliothek</div>";
+	echo "<div class='title'>Gemeinsame Normdatei</div>";
 	echo "<div class='block'>";
 		$dnb = new DNB("40e9ad5201493592c1954fce966d32f");
 		echo "<pre>".htmlspecialchars($dnb->query($searchString))."</pre>";
