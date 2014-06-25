@@ -5,56 +5,63 @@
   <xsl:template match="/">
 <!--<xsl:copy-of select="."/>-->
 
-	<h3>Wikipedia Seiten</h3>
-	<xsl:apply-templates select="//page"/><br/>
+		<div class="links">Wiki Seiten</div>
+		<xsl:apply-templates select="//page"/><br/>
 
-	<xsl:if test="//el">
-		<h3>weiterführende Links</h3>
-		<xsl:apply-templates select="//el"/>
-	<!--	<xsl:apply-templates select="//eu"/>-->
-	</xsl:if>
+		<div class="summary"><xsl:value-of select="//extract"/></div>
+
+		<xsl:if test="//el">
+			<div class="links">Externe links</div>
+			<xsl:apply-templates select="//el"/>
+		</xsl:if>
+
+		<xsl:if test="//eu">
+			<div class="links">Verweise auf die Wiki-Seite</div>
+			<xsl:apply-templates select="//eu"/>
+		</xsl:if>
   </xsl:template>
 
 
   <xsl:template match="page">
-	<a target="_blank">
-		<xsl:attribute name="href">
-			<xsl:text>http://de.wikipedia.org/wiki/</xsl:text>
-			<xsl:value-of select="@title"/>
-		</xsl:attribute>
+		<a target="_blank">
+			<xsl:attribute name="href">
+				<xsl:text>http://de.wikipedia.org/wiki/</xsl:text>
+				<xsl:value-of select="@title"/>
+			</xsl:attribute>
 
-		<xsl:value-of select="@title"/>
-	</a>
+			<xsl:value-of select="@title"/>
+		</a>
   </xsl:template>
 
 
   <xsl:template match="el">
-	<xsl:variable name="url" select="."/>
+		<xsl:variable name="url" select="."/>
 
-	<a target="_blank">
-		<xsl:attribute name="href">
-			<xsl:if test="substring($url,1,4) != 'http'">
-				<xsl:text>http:</xsl:text>
-			</xsl:if>
+		<a class="link" target="_blank">
+			<xsl:attribute name="href">
+				<xsl:if test="substring($url,1,4) != 'http'">
+					<xsl:text>http:</xsl:text>
+				</xsl:if>
+				<xsl:value-of select="."/>
+			</xsl:attribute>
 			<xsl:value-of select="."/>
-		</xsl:attribute>
-		<xsl:value-of select="."/>
-	</a>
-	<br/>
+		</a>
+		<br/>
   </xsl:template>
 
   <xsl:template match="eu">
-	Link <xsl:variable name="url" select="eu/@url"/>
+		<xsl:variable name="url" select="@url"/>
 
-<!--	<a>
-		<xsl:attribute name="href">
-			<xsl:if test="substring($url,1,4) != 'http'">
-				<xsl:text>http:</xsl:text>
-			</xsl:if>
-			<xsl:value-of select="."/>
-		</xsl:attribute>
-		<xsl:value-of select="title"/>
-	</a>-->
-	<br/>
+		<a class="link" target="_blank">
+			<xsl:attribute name="href">
+				<xsl:if test="substring($url,1,4) != 'http'">
+					<xsl:text>http:</xsl:text>
+				</xsl:if>
+
+				<xsl:value-of select="$url"/>
+			</xsl:attribute>
+			<xsl:value-of select="@title"/>
+		</a>
+		<br/>
   </xsl:template>
 </xsl:stylesheet>

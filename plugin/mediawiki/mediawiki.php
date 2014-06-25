@@ -11,13 +11,20 @@ class Mediawiki {
 	function __construct($user="") {
 		$this->url = "http://de.wikipedia.org/w/api.php";
 		$this->xsl = "";
-		$this->param = "format=xml&list=exturlusage&action=query&prop=extlinks";
+		$this->param = array(
+			"format=xml",
+			"list=exturlusage",
+			"action=query",
+			"prop=links|iwlinks|extlinks|categories|extracts",
+			"exsentences=3",
+			"explaintext"
+		);
 	}
 
 	function query($searchString) {
 		$this->xslPath = "plugin/mediawiki/mediawiki.xslt";
 
-		$path = "{$this->url}?{$this->param}&titles=$searchString";
+		$path = "{$this->url}?".implode($this->param,"&")."&titles=$searchString";
 //echo $path."<br>";
 		$xmlString = file_get_contents($path);
 

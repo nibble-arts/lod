@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="/">
-    <table border="1" cellspacing="0">
+    <table class="list">
       <th>Score</th>
       <th>Name</th>
       <th>Land</th>
@@ -29,15 +29,14 @@
       <td><xsl:value-of select="lat"/></td><td><xsl:value-of select="lng"/></td>
       <td><xsl:value-of select="population"/></td>
 
-      <td><xsl:value-of select="geonameId"/></td>
       <td>
-	<a target="_blank">
-	  <xsl:attribute name="href">
-	    <xsl:text>http://www.geonames.org/</xsl:text>
-	    <xsl:value-of select="geonameId"/>
-	  </xsl:attribute>
-	  <xsl:text>>></xsl:text>
-	 </a>
+				<a class="strong" target="_blank">
+					<xsl:attribute name="href">
+						<xsl:text>http://www.geonames.org/</xsl:text>
+						<xsl:value-of select="geonameId"/>
+					</xsl:attribute>
+					<xsl:value-of select="geonameId"/>
+				 </a>
       </td>
 <!--      <td><xsl:copy-of select="."/></td>-->
     </tr>

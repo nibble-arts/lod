@@ -2,6 +2,7 @@
 <head>
 	<title>OLD-Tool</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link href="lod.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,21 +30,30 @@ echo "</form>";
 
 
 if ($action == "suchen") {
+
 // retrieve dnb
-//	echo "<h2>Gemeinsame Normdatei</h2>";
+//	echo "<div class='title'>Gemeinsame Normdatei</div>";
+//	echo "<div class='block'>";
 //	$dnb = new DNB("40e9ad5201493592c1954fce966d32f");
 //	echo "<pre>".htmlspecialchars($dnb->query($searchString))."</pre>";
+//	echo "</div>";
+
 
 // retrieve wikipedia
-	echo "<h2>Wikipedia</h2>";
-	$wiki = new Mediawiki();
-	echo $wiki->query($searchString);
+	echo "<div class='title'>Wikipedia</div>";
+	echo "<div class='block'>";
+		$wiki = new Mediawiki();
+		echo $wiki->query($searchString);
+	echo "</div>";
+
 
 // retrieve geonames
-	echo "<h2>Geonames</h2>";
-	$geonames = new Geonames("adlibtmw");
-	$geoResult = $geonames->query($searchString);
-	echo $geoResult;
+	echo "<div class='title'>Geonames</div>";
+	echo "<div class='block'>";
+		$geonames = new Geonames("adlibtmw");
+		$geoResult = $geonames->query($searchString);
+		echo $geoResult;
+	echo "</div>";
 }
 
 ?>
