@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<h1>OLD Linking-Tool</h1>
+<h1>Open-Linked-Data Searching-Tool</h1>
 
 <?PHP
 include_once("easyrdf-0.8.0/lib/EasyRdf.php");
@@ -32,27 +32,37 @@ echo "</form>";
 if ($action == "suchen") {
 
 // retrieve wikipedia
-	echo "<div class='title'>Wikipedia</div>";
-	echo "<div class='block'>";
-		$wiki = new Mediawiki("http://de.wikipedia.org/w/api.php");
-		echo $wiki->query($searchString);
-	echo "</div>";
+	$wiki = new Mediawiki("Wikipedia","http://de.wikipedia.org","/wiki/","/w/api.php");
+	echo $wiki->query($searchString);
+
+
+// retrieve watch-wiki
+	$wiki = new Mediawiki("Watch-Wiki","http://www.watch-wiki.org","/index.php?title=","/api.php");
+	echo $wiki->query($searchString);
+
+
+// retrieve camera-wiki
+//	$wiki = new Mediawiki("Camera-Wiki","http://www.camera-wiki.org","/wiki/","/api.php");
+//	echo $wiki->query($searchString);
 
 
 // retrieve geonames
-	echo "<div class='title'>Geonames</div>";
-	echo "<div class='block'>";
-		$geonames = new Geonames("adlibtmw");
-		echo $geonames->query($searchString);
-	echo "</div>";
+	$geonames = new Geonames("adlibtmw");
+	echo $geonames->query($searchString);
 
 
 // retrieve dnb
-	echo "<div class='title'>GND der Deutschen Nationalbibliothek</div>";
-	echo "<div class='block'>";
-		$dnb = new DNB("40e9ad5201493592c1954fce966d32f");
-		echo "<pre>".htmlspecialchars($dnb->query($searchString))."</pre>";
-	echo "</div>";
+// person
+	$dnb = new DNB("GND Personen","40e9ad5201493592c1954fce966d32f","person");
+	echo $dnb->query($searchString);
+
+// institution
+	$dnb = new DNB("GND Institutionen","40e9ad5201493592c1954fce966d32f","institution");
+	echo $dnb->query($searchString);
+
+// geography
+	$dnb = new DNB("GND Geografie","40e9ad5201493592c1954fce966d32f","geography");
+	echo $dnb->query($searchString);
 }
 
 ?>

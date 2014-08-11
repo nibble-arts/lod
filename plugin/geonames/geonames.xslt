@@ -2,16 +2,21 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="/">
-    <table class="list">
-      <th>Score</th>
-      <th>Name</th>
-      <th>Land</th>
-      <th colspan="2">Koordinaten</th>
-      <th>Einwohner</th>
-      <th>Geoname ID</th>
+  	<xsl:if test="count(//geoname) &gt; 0">
+			<div class="title">Geonames</div>
+			<div class="block">
+				<table class="list">
+					<th>Score</th>
+					<th>Name</th>
+					<th>Land</th>
+					<th colspan="2">Koordinaten</th>
+					<th>Einwohner</th>
+					<th>Geoname ID</th>
 
-      <xsl:apply-templates select="//geoname"/>
-    </table>
+					<xsl:apply-templates select="//geoname"/>
+				</table>
+			</div>
+		</xsl:if>
   </xsl:template>
 
   <xsl:template match="geoname">

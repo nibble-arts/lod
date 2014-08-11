@@ -3,37 +3,36 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="/">
-<!--<xsl:copy-of select="."/>-->
+		<xsl:if test="count(//@missing) != count(//page)">
+			<div class='title'><xsl:value-of select="//wikiTitle"/></div>
+			<div class='block'>
+				<xsl:apply-templates select="//page"/>
 
-		<div class="links">Wiki Seiten</div>
-		<xsl:apply-templates select="//page"/><br/>
+				<xsl:if test="//el">
+					<div class="links">Externe links</div>
+					<xsl:apply-templates select="//el"/>
+				</xsl:if>
 
-
-		<xsl:if test="//summary">
-			<div class="summary"><xsl:value-of select="//extract"/></div>
+			</div>
 		</xsl:if>
-
-		<xsl:if test="//el">
-			<div class="links">Externe links</div>
-			<xsl:apply-templates select="//el"/>
-		</xsl:if>
-
-<!--		<xsl:if test="//eu">
-			<div class="links">Verweise auf die Wiki-Seite</div>
-			<xsl:apply-templates select="//eu"/>
-		</xsl:if>-->
   </xsl:template>
 
 
   <xsl:template match="page">
-		<a target="_blank">
-			<xsl:attribute name="href">
-				<xsl:text>http://de.wikipedia.org/wiki/</xsl:text>
-				<xsl:value-of select="@title"/>
-			</xsl:attribute>
+		<xsl:if test="not(@missing)">
+			<a target="_blank">
+				<xsl:attribute name="href">
+					<xsl:value-of select="//wikiURL"/>
+					<xsl:value-of select="@title"/>
+				</xsl:attribute>
 
-			<xsl:value-of select="@title"/>
-		</a>
+				<xsl:value-of select="@title"/>
+			</a>
+
+			<xsl:if test="extract">
+				<xsl:text> </xsl:text><span class="summary"><xsl:value-of select="extract"/></span>
+			</xsl:if>
+		</xsl:if>
   </xsl:template>
 
 
@@ -49,7 +48,6 @@
 			</xsl:attribute>
 			<xsl:value-of select="."/>
 		</a>
-		<br/>
   </xsl:template>
 
   <xsl:template match="eu">
@@ -65,6 +63,5 @@
 			</xsl:attribute>
 			<xsl:value-of select="@title"/>
 		</a>
-		<br/>
   </xsl:template>
 </xsl:stylesheet>
