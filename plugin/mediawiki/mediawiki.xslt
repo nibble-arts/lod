@@ -3,6 +3,8 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="/">
+<!--<xsl:value-of select="."/>-->
+
 		<xsl:if test="count(//@missing) != count(//page)">
 			<div class='title'><xsl:value-of select="//wikiTitle"/></div>
 			<div class='block'>
