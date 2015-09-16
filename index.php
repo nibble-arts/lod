@@ -48,18 +48,19 @@ if ($action == "suchen") {
 	$geonames = new Geonames ( "adlibtmw" );
 	echo $geonames->query ( $searchString );
 	
+
 	// retrieve dnb
 	// person
-	$dnb = new DNB ( "GND Personen", "40e9ad5201493592c1954fce966d32f", "person" );
-	echo $dnb->query ( $searchString );
+// 	$dnb = new DNB ( "GND Personen", "40e9ad5201493592c1954fce966d32f", "person" );
+// 	echo $dnb->query ( $searchString );
 	
-	// institution
-	$dnb = new DNB ( "GND Institutionen", "40e9ad5201493592c1954fce966d32f", "institution" );
-	echo $dnb->query ( $searchString );
+// 	// institution
+// 	$dnb = new DNB ( "GND Institutionen", "40e9ad5201493592c1954fce966d32f", "institution" );
+// 	echo $dnb->query ( $searchString );
 	
-	// geography
-	$dnb = new DNB ( "GND Geografie", "40e9ad5201493592c1954fce966d32f", "geography" );
-	echo $dnb->query ( $searchString );
+// 	// geography
+// 	$dnb = new DNB ( "GND Geografie", "40e9ad5201493592c1954fce966d32f", "geography" );
+// 	echo $dnb->query ( $searchString );
 }
 
 ?>
