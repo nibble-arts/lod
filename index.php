@@ -10,7 +10,6 @@
 <p>wikipedia, watch-wiki.org, camera-wiki.org, genomaes.org, dnb.de</p>
 
 <?PHP
-include_once("easyrdf-0.8.0/lib/EasyRdf.php");
 include_once("plugin/dnb/dnb.php");
 include_once("plugin/geonames/geonames.php");
 include_once("plugin/mediawiki/mediawiki.php");
